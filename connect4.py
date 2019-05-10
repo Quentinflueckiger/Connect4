@@ -3,16 +3,20 @@ import numpy as np
 ROW_COUNT = 6
 COLUMN_COUNT = 7
 
+#Initialize board as numpy array
 def create_board():
     board = np.zeros((ROW_COUNT,COLUMN_COUNT))
     return board
 
+#Drop a piece at given row and column
 def drop_piece(board, row, column, piece):
     board[row][column] = piece
 
+#Loop through a given column to check if there is any empty slot
 def is_valid_location(board, column):
     return board[ROW_COUNT-1][column] == 0
 
+#Return first empty row slot
 def get_next_open_row(board, column):
     for r in range(ROW_COUNT):
         if board[r][column] == 0:
