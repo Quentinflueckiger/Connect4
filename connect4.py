@@ -43,7 +43,7 @@ while not game_over:
     #Ask player 2 for input
     else:
         column = int(input("Player 2 make your selection (0-6):"))
-
+    
         if is_valid_location(board, column) :
             row = get_next_open_row(board,column)
             drop_piece(board,row,column,2)
