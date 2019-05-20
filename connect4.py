@@ -28,8 +28,8 @@ def get_next_open_row(board, column):
 def print_board(board):
     print(np.flip(board,0))
 
-#Brute force check for winning moves (maybe to change to something more optimal)
-#And add possibility to change board size, number of same pieces needed to win
+#Brute force check for winning moves
+#Add possibility to change board size, number of same pieces needed to win
 def winning_move(board, piece):
     #Check horizontal
     for c in range(COLUMN_COUNT-(PIECES_TO_WIN-1)):
@@ -61,7 +61,7 @@ def winning_move(board, piece):
                 #if winning :
                 #    return True
 
-    #Check positive diaganols
+    #Check positive diagonals
     for c in range(COLUMN_COUNT-(PIECES_TO_WIN-1)):
         winning = False
         for r in range(ROW_COUNT-(PIECES_TO_WIN-1)):
@@ -76,11 +76,19 @@ def winning_move(board, piece):
                 #if winning :
                 #    return True
 
-    #Check negative diaganols
+    #Check negative diagonals
     for c in range(COLUMN_COUNT-(PIECES_TO_WIN-1)):
         for r in range(PIECES_TO_WIN-1, ROW_COUNT):
             if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
                return True
+            if board[r][c] == piece :
+                for p in range (1,PIECES_TO_WIN):
+                    if board[r-p][c+p] == piece:
+                            winning = True
+                    else:
+                        winning = False
+                #if winning :
+                #    return True
 
 #Core program
 board = create_board()
